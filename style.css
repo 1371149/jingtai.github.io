@@ -154,6 +154,8 @@ body::before {
 
 .visual-gradient {
   padding: 18px;
+  display: flex;
+  flex-direction: column;
   background:
     linear-gradient(135deg, rgba(102, 227, 255, 0.16), rgba(139, 125, 255, 0.12)),
     rgba(255,255,255,0.03);
@@ -165,14 +167,15 @@ body::before {
   gap: 12px;
   font-size: 13px;
   color: var(--muted);
-  margin-bottom: 14px;
 }
 
 .visual-bars {
   display: grid;
-  gap: 16px;
-  align-content: end;
-  height: calc(100% - 32px);
+  gap: 18px;
+  align-content: center;
+  flex: 1;
+  padding-top: 12px;
+  padding-bottom: 2px;
 }
 
 .bar-row {
@@ -534,12 +537,12 @@ canvas {
 }
 
 .demo-section .section-head {
-  max-width: 980px;
+  max-width: 1240px;
   margin: 0 auto 14px;
 }
 
 .demo-suite {
-  max-width: 980px;
+  max-width: 1240px;
   margin: 0 auto;
   display: grid;
   gap: 14px;
@@ -557,37 +560,37 @@ canvas {
 }
 
 .demo-item span {
-  font-size: 15px;
+  font-size: 17px;
 }
 
 .demo-item small {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.35;
 }
 
 .demo-stage {
-  min-height: 360px;
-  padding: 18px;
+  min-height: 500px;
+  padding: 22px;
 }
 
 .demo-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 18px;
   align-items: stretch;
 }
 
 .demo-column {
   min-width: 0;
-  padding: 16px;
+  padding: 18px;
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,0.08);
   background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
   display: flex;
   flex-direction: column;
   gap: 12px;
-  height: 560px;
+  height: 680px;
   overflow: hidden;
 }
 
@@ -609,7 +612,7 @@ canvas {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -639,15 +642,15 @@ canvas {
 
 .demo-box-label {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
 .demo-copy {
   flex: 1 1 auto;
-  font-size: 13px;
-  line-height: 1.55;
+  font-size: 15px;
+  line-height: 1.65;
   white-space: pre-wrap;
   color: #eaf1ff;
   min-height: 0;
@@ -672,7 +675,7 @@ canvas {
 
 .demo-question {
   flex: 0 0 auto;
-  height: 140px;
+  height: 150px;
 }
 
 .demo-answer {
@@ -681,15 +684,15 @@ canvas {
 
 .demo-advice {
   flex: 0 0 auto;
-  height: 110px;
+  height: 130px;
 }
 
 .demo-column.baseline .demo-answer {
-  height: 324px;
+  height: 420px;
 }
 
 .demo-column.guarded .demo-answer {
-  height: 214px;
+  height: 306px;
 }
 
 .result-wall {
