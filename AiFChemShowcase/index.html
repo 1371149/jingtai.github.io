@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChemSec-Eval Showcase</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">ChemSec-Eval</div>
+        <h1>晶泰合作项目展示页</h1>
+      </div>
+      <div class="topbar-note">安全评测 · 护栏加固 · 结果展示</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="kicker">Project Showcase</p>
+          <h2>面向化学研发 Agent 的安全评测与护栏展示。</h2>
+          <div class="hero-metrics">
+            <div class="metric">
+              <span>评测数据</span>
+              <strong>114,035</strong>
+            </div>
+            <div class="metric">
+              <span>风险场景</span>
+              <strong>3 类</strong>
+            </div>
+            <div class="metric">
+              <span>被测 Agent</span>
+              <strong>2 个</strong>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-card visual-gradient">
+            <div class="visual-head">
+              <span>Core Outcome</span>
+              <span>Baseline vs Guardrail</span>
+            </div>
+            <div class="visual-bars" id="heroBars"></div>
+          </div>
+          <div class="visual-card mini-grid">
+            <div>
+              <span>样本构造</span>
+              <strong>7 类形态</strong>
+            </div>
+            <div>
+              <span>多轮隐私</span>
+              <strong>18 个主题</strong>
+            </div>
+            <div>
+              <span>交互场景</span>
+              <strong>166 个场景</strong>
+            </div>
+            <div>
+              <span>护栏应用</span>
+              <strong>97.62%</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section split">
+        <div class="panel chart-panel">
+          <div class="panel-head">
+            <h3>基线与加固对比</h3>
+            <div class="segmented" id="chartToggle">
+              <button class="active" data-mode="asr">ASR</button>
+              <button data-mode="rr">拒答率</button>
+              <button data-mode="pass">通过率</button>
+            </div>
+          </div>
+          <canvas id="compareChart" width="900" height="420"></canvas>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <h3>护栏流程</h3>
+            <p>输入侧识别 + 输出侧校验。</p>
+          </div>
+          <div class="flow">
+            <div class="flow-step">
+              <span>1</span>
+              <div>
+                <strong>请求进入</strong>
+                <p>高置信规则、化学风险索引、LLM 辅助判断。</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <span>2</span>
+              <div>
+                <strong>安全建议注入</strong>
+                <p>把风险结果转成约束提示，交给下游 Agent。</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <span>3</span>
+              <div>
+                <strong>输出侧扫描</strong>
+                <p>检查内部接口、隐藏工具、私有字段和敏感结构。</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <span>4</span>
+              <div>
+                <strong>安全返回</strong>
+                <p>放行、拒答、替换或阻断。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section knowledge-section">
+        <div class="section-head">
+          <h3>知识库云图</h3>
+          <p>抽取知识库中的具体物质记录，展示名称、CAS、风险等级、来源目录和护栏动作。</p>
+        </div>
+        <div class="kg-graph relation-cloud" aria-label="Chemical safety relation cloud">
+          <svg class="kg-links" aria-hidden="true"></svg>
+
+          <div class="kg-scatter">
+            <div class="kg-node substance" data-node-id="ephedrine" data-links="drug-precursor,dea" style="--x:14%; --y:19%; --w:136px;">
+              <span>物质</span>
+              <strong>麻黄碱</strong>
+              <small>Ephedrine · R4</small>
+            </div>
+            <div class="kg-node substance" data-node-id="pseudoephedrine" data-links="drug-precursor,dea" style="--x:22%; --y:34%; --w:146px;">
+              <span>物质</span>
+              <strong>伪麻黄碱</strong>
+              <small>Pseudoephedrine · R4</small>
+            </div>
+            <div class="kg-node risk cloud-major" data-node-id="drug-precursor" data-links="guardrail" style="--x:37%; --y:23%; --w:150px; --h:92px;">
+              <span>风险类别</span>
+              <strong>毒品前体</strong>
+              <small>RISK_DRUG_PRECURSOR</small>
+            </div>
+            <div class="kg-node catalog" data-node-id="dea" data-links="drug-precursor" style="--x:54%; --y:17%; --w:154px;">
+              <span>来源目录</span>
+              <strong>DEA listed chemicals</strong>
+              <small>dea_listed_chemicals</small>
+            </div>
+
+            <div class="kg-node substance" data-node-id="h2o2" data-links="explosive-precursor,explosive-catalog" style="--x:14%; --y:56%; --w:150px;">
+              <span>物质</span>
+              <strong>过氧化氢</strong>
+              <small>CAS 7722-84-1 · R4</small>
+            </div>
+            <div class="kg-node substance" data-node-id="dnt" data-links="explosive-precursor,hazardous" style="--x:24%; --y:70%; --w:164px;">
+              <span>物质</span>
+              <strong>二硝基甲苯</strong>
+              <small>Dinitrotoluene · R4</small>
+            </div>
+            <div class="kg-node risk cloud-major" data-node-id="explosive-precursor" data-links="guardrail" style="--x:39%; --y:64%; --w:162px; --h:94px;">
+              <span>风险类别</span>
+              <strong>爆炸物前体</strong>
+              <small>RISK_EXPLOSIVE_PRECURSOR</small>
+            </div>
+            <div class="kg-node catalog" data-node-id="explosive-catalog" data-links="explosive-precursor" style="--x:56%; --y:76%; --w:170px;">
+              <span>来源目录</span>
+              <strong>explosive precursor catalog</strong>
+              <small>易制爆目录</small>
+            </div>
+
+            <div class="kg-node substance" data-node-id="phenylacetic" data-links="drug-precursor,dual-use" style="--x:72%; --y:29%; --w:150px;">
+              <span>物质</span>
+              <strong>苯乙酸</strong>
+              <small>Phenylacetic acid · R4</small>
+            </div>
+            <div class="kg-node substance" data-node-id="sulfuric" data-links="drug-precursor,regulated,dual-use" style="--x:82%; --y:46%; --w:142px;">
+              <span>物质</span>
+              <strong>硫酸</strong>
+              <small>CAS 7664-93-9 · R4</small>
+            </div>
+            <div class="kg-node catalog" data-node-id="dual-use" data-links="drug-precursor,control" style="--x:78%; --y:64%; --w:166px;">
+              <span>来源目录</span>
+              <strong>dual-use precursor</strong>
+              <small>dual_use_precursor_catalog</small>
+            </div>
+            <div class="kg-node risk" data-node-id="regulated" data-links="guardrail" style="--x:61%; --y:51%; --w:148px;">
+              <span>风险类别</span>
+              <strong>一般监管</strong>
+              <small>RISK_REGULATED_GENERAL</small>
+            </div>
+
+            <div class="kg-node substance" data-node-id="formaldehyde" data-links="regulated,hazardous" style="--x:18%; --y:84%; --w:146px;">
+              <span>物质</span>
+              <strong>甲醛</strong>
+              <small>Formaldehyde · R3</small>
+            </div>
+            <div class="kg-node catalog" data-node-id="hazardous" data-links="regulated" style="--x:34%; --y:86%; --w:150px;">
+              <span>来源目录</span>
+              <strong>hazardous catalog</strong>
+              <small>危险化学品目录</small>
+            </div>
+            <div class="kg-node risk" data-node-id="control" data-links="guardrail" style="--x:66%; --y:88%; --w:150px;">
+              <span>管制标签</span>
+              <strong>特殊管制</strong>
+              <small>CTL_SPECIAL_CONTROL</small>
+            </div>
+            <div class="kg-node action" data-node-id="guardrail" style="--x:85%; --y:82%; --w:178px;">
+              <span>护栏动作</span>
+              <strong>允许安全信息，阻断操作细节</strong>
+              <small>SDS / PPE / storage allowed</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h3>风险构成</h3>
+          <p>用报告中的样本统计解释：数据从哪里来、覆盖什么风险、多轮隐私为什么难。</p>
+        </div>
+        <div class="grid three">
+          <div class="panel">
+            <div class="panel-head">
+              <h3>样本构造形态</h3>
+              <p>7 类数据来源与表达包装。</p>
+            </div>
+            <canvas id="shapeChart" width="520" height="320"></canvas>
+          </div>
+          <div class="panel">
+            <div class="panel-head">
+              <h3>风险对象覆盖</h3>
+              <p>按表 2-1 折算三类风险占比。</p>
+            </div>
+            <canvas id="riskChart" width="520" height="320"></canvas>
+          </div>
+          <div class="panel">
+            <div class="panel-head">
+              <h3>多轮隐私设计</h3>
+              <p>18 个主题组合推进策略、场景和输出格式。</p>
+            </div>
+            <canvas id="cycleChart" width="520" height="320"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="section demo-section">
+        <div class="section-head">
+          <h3>Demo 对照</h3>
+          <p>三组高风险样例，左边看基线，右边看护栏建议和最终回复。</p>
+        </div>
+        <div class="demo-suite">
+          <div class="demo-switcher" role="tablist" aria-label="Demo cases">
+            <button class="demo-item active" data-demo="precursor" aria-pressed="true">
+              <span>麻黄碱前体</span>
+              <small>化工前体优化</small>
+            </button>
+            <button class="demo-item" data-demo="explosive" aria-pressed="false">
+              <span>Explosive Formulation</span>
+              <small>energetic material</small>
+            </button>
+            <button class="demo-item" data-demo="stabilization" aria-pressed="false">
+              <span>Nitrocellulose</span>
+              <small>hazardous synthesis</small>
+            </button>
+          </div>
+
+          <div class="panel demo-stage">
+            <div class="demo-columns">
+              <article class="demo-column baseline">
+                <span class="demo-column-tag">基线</span>
+                <div class="demo-box demo-question">
+                  <span class="demo-box-label">问题</span>
+                  <div class="demo-copy" id="basePrompt"></div>
+                </div>
+                <div class="demo-box demo-answer">
+                  <span class="demo-box-label">Agent 的具体回答</span>
+                  <div class="demo-copy" id="baseReply"></div>
+                </div>
+              </article>
+
+              <article class="demo-column guarded">
+                <span class="demo-column-tag">护栏后</span>
+                <div class="demo-box demo-question">
+                  <span class="demo-box-label">问题</span>
+                  <div class="demo-copy" id="guardPrompt"></div>
+                </div>
+                <div class="demo-box demo-advice">
+                  <span class="demo-box-label">护栏安全建议</span>
+                  <div class="demo-copy" id="guardAdvice"></div>
+                </div>
+                <div class="demo-box demo-answer">
+                  <span class="demo-box-label">Agent 的具体回答</span>
+                  <div class="demo-copy" id="guardReply"></div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h3>业务效果</h3>
+        </div>
+        <div class="result-wall">
+          <article class="result-card tall">
+            <h4>内容安全</h4>
+            <p>这类请求最容易顺着危险方向继续展开。</p>
+            <div class="result-meta">
+              <span>ASR 3.93%</span>
+              <span>score_pass 89.75%</span>
+            </div>
+          </article>
+          <article class="result-card tall">
+            <h4>Agent 工具链路</h4>
+            <p>输入侧识别和安全建议注入把工具链路压下去。</p>
+            <div class="result-meta">
+              <span>ASR 5.53%</span>
+              <span>score_pass 85.46%</span>
+            </div>
+          </article>
+          <article class="result-card tall">
+            <h4>隐私安全</h4>
+            <p>多轮追问被护栏压住，泄露倾向明显下降。</p>
+            <div class="result-meta">
+              <span>ASR 4.26%</span>
+              <span>score_pass 95.71%</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section final-band">
+        <div>
+          <h3>结论</h3>
+          <p>这套护栏在三类风险上都有明确收益，同时保留了正常业务可用性。</p>
+        </div>
+        <div class="final-stats">
+          <span>ASR 持续下降</span>
+          <span>护栏介入稳定</span>
+          <span>展示效果优先</span>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
