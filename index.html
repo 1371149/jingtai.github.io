@@ -23,16 +23,16 @@
           <h2>面向化学研发 Agent 的安全评测与护栏展示。</h2>
           <div class="hero-metrics">
             <div class="metric">
-              <span>评测数据</span>
-              <strong>114,035</strong>
+              <span>数据规模</span>
+              <strong>11 万+</strong>
             </div>
             <div class="metric">
-              <span>风险场景</span>
-              <strong>3 类</strong>
+              <span>覆盖场景</span>
+              <strong>3 大类</strong>
             </div>
             <div class="metric">
               <span>被测 Agent</span>
-              <strong>2 个</strong>
+              <strong>化学研发、合成业务</strong>
             </div>
           </div>
         </div>
@@ -47,19 +47,23 @@
           <div class="visual-card mini-grid">
             <div>
               <span>样本构造</span>
-              <strong>7 类形态</strong>
+              <strong>全自动生成</strong>
+              <small>人工成本低</small>
             </div>
             <div>
-              <span>多轮隐私</span>
-              <strong>18 个主题</strong>
+              <span>被测 Agent</span>
+              <strong>化学研发、合成业务</strong>
+              <small>合成检索、路线分析、方案推荐</small>
             </div>
             <div>
-              <span>交互场景</span>
-              <strong>166 个场景</strong>
+              <span>细分场景</span>
+              <strong>166 个细分场景</strong>
+              <small>覆盖 3 大类风险</small>
             </div>
             <div>
               <span>护栏应用</span>
-              <strong>97.62%</strong>
+              <strong>97.62% 覆盖</strong>
+              <small>核心流程落地</small>
             </div>
           </div>
         </div>
@@ -70,10 +74,17 @@
           <div class="panel-head">
             <h3>基线与加固对比</h3>
             <div class="segmented" id="chartToggle">
-              <button class="active" data-mode="asr">ASR</button>
-              <button data-mode="rr">拒答率</button>
-              <button data-mode="pass">通过率</button>
+              <button class="active" data-mode="asr">ASR ↓</button>
+              <button data-mode="rr">拒答率 ↑</button>
+              <button data-mode="pass">通过率 ↑</button>
             </div>
+          </div>
+          <div class="chart-meta">
+            <div class="chart-legend">
+              <span><i class="swatch base"></i>基线（左）</span>
+              <span><i class="swatch guard"></i>加固后（右）</span>
+            </div>
+            <div class="chart-direction" id="chartDirection">ASR ↓ 越低越好</div>
           </div>
           <canvas id="compareChart" width="900" height="420"></canvas>
         </div>
@@ -87,7 +98,7 @@
               <span>1</span>
               <div>
                 <strong>请求进入</strong>
-                <p>高置信规则、化学风险索引、LLM 辅助判断。</p>
+                <p>高置信规则、知识库检索、LLM 辅助判断。</p>
               </div>
             </div>
             <div class="flow-step">
@@ -215,7 +226,7 @@
         <div class="section-head">
           <h3>风险构成</h3>
         </div>
-        <div class="grid three">
+        <div class="grid three risk-grid">
           <div class="panel">
             <div class="panel-head">
               <h3>样本构造形态</h3>
@@ -226,18 +237,18 @@
           <div class="panel">
             <div class="panel-head">
               <h3>风险对象覆盖</h3>
-              <p>按表 2-1 折算三类风险占比。</p>
+              <p>三类风险对象的整体分布。</p>
             </div>
             <canvas id="riskChart" width="520" height="320"></canvas>
           </div>
-          <div class="panel">
-            <div class="panel-head">
-              <h3>多轮隐私设计</h3>
-              <p>18 个主题组合推进策略、场景和输出格式。</p>
-            </div>
-            <canvas id="cycleChart" width="520" height="320"></canvas>
+        <div class="panel">
+          <div class="panel-head">
+            <h3>多轮隐私设计</h3>
+            <p>围绕 18 个内部信息主题，按 4 类推进策略、166 个场景和 6 种输出格式构造三轮对话。</p>
           </div>
+          <canvas id="cycleChart" width="520" height="360"></canvas>
         </div>
+      </div>
       </section>
 
       <section class="section demo-section">

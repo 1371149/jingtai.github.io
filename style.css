@@ -125,9 +125,10 @@ body::before {
 
 .metric {
   border-radius: 18px;
-  padding: 18px;
+  padding: 20px 18px 22px;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
+  min-height: 112px;
 }
 
 .metric strong, .stat-card strong, .final-stats span, .demo-meta strong {
@@ -135,8 +136,8 @@ body::before {
   color: var(--text);
 }
 
-.metric strong { font-size: 28px; margin-top: 6px; }
-.metric span { font-size: 12px; }
+.metric strong { font-size: 38px; margin-top: 10px; line-height: 1.02; }
+.metric span { font-size: 13px; }
 
 .hero-visual {
   border-radius: 24px;
@@ -156,6 +157,7 @@ body::before {
   padding: 18px;
   display: flex;
   flex-direction: column;
+  min-height: 320px;
   background:
     linear-gradient(135deg, rgba(102, 227, 255, 0.16), rgba(139, 125, 255, 0.12)),
     rgba(255,255,255,0.03);
@@ -171,23 +173,40 @@ body::before {
 
 .visual-bars {
   display: grid;
-  gap: 18px;
+  gap: 20px;
   align-content: center;
   flex: 1;
-  padding-top: 12px;
-  padding-bottom: 2px;
+  padding-top: 20px;
+  padding-bottom: 14px;
 }
 
 .bar-row {
   display: grid;
-  grid-template-columns: 120px 1fr 80px;
+  grid-template-columns: 100px minmax(0, 1fr) 54px;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   font-size: 13px;
 }
 
+.bar-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.bar-line {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 52px;
+  align-items: center;
+  gap: 10px;
+}
+
+.line-tag {
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .bar-track {
-  height: 16px;
+  height: 14px;
   border-radius: 999px;
   background: rgba(255,255,255,0.08);
   overflow: hidden;
@@ -199,36 +218,93 @@ body::before {
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
 }
 
+.bar-fill-base {
+  background: linear-gradient(90deg, rgba(102,227,255,0.85), rgba(255,255,255,0.65));
+}
+
+.bar-fill-guard {
+  background: linear-gradient(90deg, rgba(49,215,165,0.9), rgba(255,255,255,0.75));
+}
+
 .bar-row .value {
   text-align: right;
   font-weight: 700;
   color: var(--text);
+  font-size: 14px;
+}
+
+.bar-label {
+  font-size: 15px;
+  color: var(--text);
+}
+
+.delta {
+  justify-self: end;
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.delta.up {
+  color: #79f0cb;
+}
+
+.delta.down {
+  color: #ff8f9f;
 }
 
 .mini-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
-  padding: 14px;
+  padding: 16px;
 }
 
 .mini-grid div {
   border-radius: 16px;
-  padding: 14px;
+  padding: 16px 14px;
   background: rgba(255,255,255,0.035);
   border: 1px solid rgba(255,255,255,0.05);
+  min-height: 108px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .mini-grid span {
   display: block;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .mini-grid strong {
   display: block;
   margin-top: 8px;
-  font-size: 16px;
+  font-size: 22px;
+  line-height: 1.12;
+}
+
+.mini-grid small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.chart-panel canvas#cycleChart {
+  margin-top: 4px;
+}
+
+.risk-grid > .panel:last-child {
+  min-height: 450px;
+}
+
+.risk-grid .panel-head p {
+  max-width: 100%;
+  line-height: 1.6;
+}
+
+.risk-grid .panel:last-child canvas {
+  margin-top: 8px;
 }
 
 .section {
@@ -312,6 +388,49 @@ body::before {
 .panel-head p {
   margin: 0;
   font-size: 13px;
+}
+
+.chart-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.swatch.base {
+  background: linear-gradient(135deg, #66e3ff, rgba(255,255,255,0.75));
+}
+
+.swatch.guard {
+  background: linear-gradient(135deg, #31d7a5, rgba(255,255,255,0.8));
+}
+
+.chart-direction {
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
 }
 
 .segmented {
